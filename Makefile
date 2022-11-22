@@ -6,42 +6,34 @@
 #    By: numussan <numussan@student.42abudhabi.ae>  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/09 14:51:24 by numussan          #+#    #+#              #
-#    Updated: 2022/11/09 15:06:50 by numussan         ###   ########.fr        #
+#    Updated: 2022/11/22 21:15:04 by numussan         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME		= philosophers
+NAME		= philo
 
-SRCS		= philosophers.c
+SRCS		= philosophers.c utils.c start.c actions.c
 
 OBJS		= $(SRCS:.c=.o)
 
-CCF			= gcc -Wall -Wextra -Werror
+CCF			= gcc -Wall -Wextra -Werror -g #-fsanitize=thread
 
-MAKELIBFT	= cd libft && make
-
-LIBFT		= libft/libft.a
-
-RM			= rm -f
+RM			= rm -rf
 
 all: $(NAME)
 
 $(NAME): $(OBJS)
-	$(MAKELIBFT)
-	$(CCF) -o $(NAME) $(SRCS) $(LIBFT)
+	$(CCF) $(SRCS) -o $(NAME)
 
 %.o: %.c philosophers.h
 	$(CCF) -c $< -o $@
-	
+
 clean:
 	$(RM) $(OBJS)
-	$(MAKELIBFT) clean
 
-fclean:
+fclean: clean
 	$(RM) $(NAME)
-	$(MAKELIBFT) fclean
 
-re:
-	fclean all
+re: fclean all
 
-.PHONY: all clean fclean re libft
+.PHONY: all clean fclean re
