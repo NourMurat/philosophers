@@ -6,7 +6,7 @@
 /*   By: numussan <numussan@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/20 19:36:07 by numussan          #+#    #+#             */
-/*   Updated: 2022/11/22 22:50:26 by numussan         ###   ########.fr       */
+/*   Updated: 2022/11/23 23:29:34 by numussan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,38 +92,94 @@ int	ft_philo_init(t_global *global)
 	return (0);
 }
 
-t_global	*ft_global_init(int ac, char **av)
+t_global	*ft_global_init(int i, char **s)
 {
-	t_global	*arg;
+	t_global	*global;
 
-	arg = malloc(sizeof(t_global));
-	if (!arg)
+	global = malloc(sizeof(t_global));
+	if (!global)
 		return (NULL);
-	arg->number_of_philos = ft_atoi(av[1]);
-	arg->time_to_die = ft_atoi(av[2]);
-	arg->time_to_eat = ft_atoi(av[3]);
-	arg->time_to_sleep = ft_atoi(av[4]);
-	arg->count_of_lunch = 0;
-	if (ac == 6)
-		arg->count_of_lunch = ft_atoi(av[5]);
-	arg->death = 0;
-	arg->time_start = 0;
-	arg->thread = NULL;
-	arg->fork = NULL;
-	arg->philo = NULL;
-	pthread_mutex_init(&arg->print_action, NULL);
-	return (arg);
+	global->number_of_philos = ft_atoi(s[0]);
+	global->time_to_die = ft_atoi(s[1]);
+	global->time_to_eat = ft_atoi(s[2]);
+	global->time_to_sleep = ft_atoi(s[3]);
+	global->count_of_lunch = 0;
+	if (i == 5)
+		global->count_of_lunch = ft_atoi(s[4]);
+	global->death = 0;
+	global->time_start = 0;
+	global->thread = NULL;
+	global->fork = NULL;
+	global->philo = NULL;
+	pthread_mutex_init(&global->print_action, NULL);
+	return (global);
+}
+
+char	**ft_separate_string(int argc, char **s)
+{
+	int		i;
+	char	*new_arr;
+	char	*temp;
+	char	**separate_string;
+
+	i = 1;
+	new_arr = "";
+	temp = NULL;
+	while (i < argc)
+	{
+		temp = new_arr;
+		new_arr = ft_strjoin(new_arr, s[i]);
+		if (i > 1)
+			free(temp);
+		i++;
+	}
+	separate_string = ft_split(new_arr, ' ');
+	free(new_arr);
+	return (separate_string);
+}
+
+int	ft_check_spaces(char **s)
+{
+	int	i;
+	int	j;
+	int	sp;
+
+	i = 0;
+	while (s[i])
+	{
+		j = 0;
+		sp = 0;
+		while (s[i][j])
+		{
+			if (s[i][j] == ' ' || (s[i][j] >= 9 && s[i][j] <= 13))
+				sp++;
+			j++;
+		}
+		if (sp == j)
+		{
+			printf("<<<<< ERROR! Empty argument OR only spaces! >>>>>\n");
+			return (1);
+		}
+		i++;
+	}
+	return (0);
 }
 
 int	ft_parsing(int ac, char **s)
 {
-	if (ac != 5 && ac != 6)
+	int	i;
+
+	i = 0;
+	ac = i;
+	while (s[i] != NULL)
+		i++;
+	if (i != 4 && i != 5)
 	{
 		printf("<<<<< ERROR! Input 4 or 5 arguments! >>>>>");
 		return (1);
 	}
-	if (ft_atoi(s[1]) <= 0 || ft_atoi(s[2]) <= 0 || ft_atoi(s[3]) <= 0 \
-		|| ft_atoi(s[4]) <= 0 || (ac == 6 && ft_atoi(s[5]) <= 0))
+	if (ft_atoi(s[0]) <= 0 || ft_atoi(s[1]) <= 0 || ft_atoi(s[2]) <= 0 \
+		|| ft_atoi(s[3]) <= 0 || (i == 5 && ft_atoi(s[4]) <= 0))
 	{
 		printf("<<<<< ERROR! Wrong arguments! >>>>>");
 		return (1);

@@ -6,7 +6,7 @@
 /*   By: numussan <numussan@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/17 13:36:07 by numussan          #+#    #+#             */
-/*   Updated: 2022/11/22 22:45:14 by numussan         ###   ########.fr       */
+/*   Updated: 2022/11/23 22:46:32 by numussan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,12 +60,21 @@ int			ft_global_malloc(t_global *global);
 long long	ft_current_time(void);
 void		ft_usleep(long long time);
 
+char		**ft_split(const char *s, char c);
+int			ft_counting_words(const char *s, char c);
+char		*ft_pull_the_word(const char *s, char c);
+char		*ft_strjoin(const char *s1, const char *s2);
+void		ft_free_after_split(char **s);
+int			ft_strlen(const char *s);
+
+int			ft_check_spaces(char **s);
+char		**ft_separate_string(int ac, char **s);
+
 void		ft_print(t_global *global, t_philo *philo, char *str);
 int			ft_eating(t_global *global, t_philo *philo);
 void		ft_sleeping(t_global *global, t_philo *philo);
 void		ft_thinking(t_global *global, t_philo *philo);
 void		*ft_check_death(void *tmp);
-
 void		ft_mutex_destroy(t_global *global);
 
 #endif

@@ -6,30 +6,53 @@
 #    By: numussan <numussan@student.42abudhabi.ae>  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/09 14:51:24 by numussan          #+#    #+#              #
-#    Updated: 2022/11/22 21:15:04 by numussan         ###   ########.fr        #
+#    Updated: 2022/11/23 22:30:31 by numussan         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME		= philo
 
-SRCS		= philosophers.c utils.c start.c actions.c
+.SILENT:
 
-OBJS		= $(SRCS:.c=.o)
+SRCS		= srcs/philosophers \
+		srcs/utils \
+		srcs/utils2 \
+		srcs/start \
+		srcs/actions
 
-CCF			= gcc -Wall -Wextra -Werror -g #-fsanitize=thread
+OBJDIR 		= objects
+
+OBJS		= $(addprefix $(OBJDIR)/, $(addsuffix .o, $(SRCS)))
+
+CCF			= gcc -Wall -Wextra -Werror #-fsanitize=thread
 
 RM			= rm -rf
 
-all: $(NAME)
-
-$(NAME): $(OBJS)
-	$(CCF) $(SRCS) -o $(NAME)
-
-%.o: %.c philosophers.h
+$(OBJDIR)/%.o: %.c srcs/philosophers.h
+	mkdir -p $(OBJDIR)
+	mkdir -p $(OBJDIR)/srcs
 	$(CCF) -c $< -o $@
 
+all: $(NAME)
+	tput setaf 2
+	printf "Executable"
+	tput setaf 1
+	printf " Provided 🤓\n";
+	tput setaf 7
+	printf "  .---------.\n";
+	printf "  |.-------.|\n";
+	printf "  ||>run   ||\n";
+	printf "  ||       ||\n";
+	printf "  |'-------'|\n";
+	printf ".-^---------^-.\n";
+	printf "| Philo start |\n";
+	printf "'-------------'\n";
+
+$(NAME): $(OBJS)
+	$(CCF) $(OBJS) -o $(NAME)
+
 clean:
-	$(RM) $(OBJS)
+	$(RM) $(OBJDIR)
 
 fclean: clean
 	$(RM) $(NAME)

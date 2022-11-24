@@ -6,11 +6,21 @@
 /*   By: numussan <numussan@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/20 19:37:29 by numussan          #+#    #+#             */
-/*   Updated: 2022/11/22 22:51:30 by numussan         ###   ########.fr       */
+/*   Updated: 2022/11/23 22:32:13 by numussan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philosophers.h"
+
+int	ft_strlen(const char *s)
+{
+	int	i;
+
+	i = 0;
+	while (s[i])
+		i++;
+	return (i);
+}
 
 void	ft_usleep(long long time)
 {
@@ -31,25 +41,29 @@ long long	ft_current_time(void)
 
 int	ft_atoi(char *s)
 {
-	int		i;
-	int		sign;
-	int		num;
+	int					i;
+	int					sign;
+	unsigned long long	num;
 
 	i = 0;
 	sign = 1;
 	num = 0;
 	while (s[i] == 32 || (s[i] >= 9 && s[i] <= 13))
 		i++;
+	if (s[i] == 45)
+		sign = -1;
 	if (s[i] == 43 || s[i] == 45)
-	{
-		if (s[i] == 45)
-			sign = -1;
 		i++;
-	}
 	while (s[i] >= 48 && s[i] <= 57)
 	{
 		num = num * 10 + s[i] - 48;
 		i++;
 	}
+	if (s[i] && (s[i] < 48 || s[i] > 57))
+		return (-1);
+	if (sign == 1 && num >= 9223372036854775807u)
+		return (-1);
+	if (sign == -1 && num >= 9223372036854775808u)
+		return (0);
 	return (num * sign);
 }

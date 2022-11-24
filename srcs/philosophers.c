@@ -6,7 +6,7 @@
 /*   By: numussan <numussan@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/09 14:08:06 by numussan          #+#    #+#             */
-/*   Updated: 2022/11/22 22:44:32 by numussan         ###   ########.fr       */
+/*   Updated: 2022/11/23 23:31:14 by numussan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,10 +54,19 @@ int	ft_global_malloc(t_global *global)
 int	main(int ac, char **av)
 {
 	t_global	*global;
+	char		**separate_nbrs;
+	int			i;
 
-	if (ft_parsing(ac, av))
+	i = 0;
+	if (ft_check_spaces(av))
 		return (1);
-	global = ft_global_init(ac, av);
+	separate_nbrs = ft_separate_string(ac, av);
+	if (ft_parsing(ac, separate_nbrs))
+		return (1);
+	while (separate_nbrs[i] != NULL)
+		i++;
+	global = ft_global_init(i, separate_nbrs);
+	ft_free_after_split(separate_nbrs);
 	if (!global)
 		return (ft_free_global(global));
 	if (ft_global_malloc(global))
