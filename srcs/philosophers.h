@@ -6,7 +6,7 @@
 /*   By: numussan <numussan@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/17 13:36:07 by numussan          #+#    #+#             */
-/*   Updated: 2022/11/23 22:46:32 by numussan         ###   ########.fr       */
+/*   Updated: 2022/11/24 19:10:56 by numussan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ typedef struct s_global
 	t_philo			*philo;
 }				t_global;
 
-int			ft_parsing(int ac, char **s);
+int			ft_parsing(char **s);
 t_global	*ft_global_init(int ac, char **av);
 int			ft_philo_init(t_global *global);
 int			ft_start(t_global *global);

@@ -6,7 +6,7 @@
 /*   By: numussan <numussan@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/09 14:08:06 by numussan          #+#    #+#             */
-/*   Updated: 2022/11/23 23:31:14 by numussan         ###   ########.fr       */
+/*   Updated: 2022/11/24 19:11:11 by numussan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ int	main(int ac, char **av)
 	if (ft_check_spaces(av))
 		return (1);
 	separate_nbrs = ft_separate_string(ac, av);
-	if (ft_parsing(ac, separate_nbrs))
+	if (ft_parsing(separate_nbrs))
 		return (1);
 	while (separate_nbrs[i] != NULL)
 		i++;

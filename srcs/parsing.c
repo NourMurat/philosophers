@@ -6,7 +6,7 @@
 /*   By: numussan <numussan@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/24 18:13:14 by numussan          #+#    #+#             */
-/*   Updated: 2022/11/24 18:13:33 by numussan         ###   ########.fr       */
+/*   Updated: 2022/11/24 19:10:47 by numussan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,12 +62,11 @@ int	ft_check_spaces(char **s)
 	return (0);
 }
 
-int	ft_parsing(int ac, char **s)
+int	ft_parsing(char **s)
 {
 	int	i;
 
 	i = 0;
-	ac = i;
 	while (s[i] != NULL)
 		i++;
 	if (i != 4 && i != 5)
