@@ -6,7 +6,7 @@
 #    By: numussan <numussan@student.42abudhabi.ae>  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/09 14:51:24 by numussan          #+#    #+#              #
-#    Updated: 2022/11/23 22:30:31 by numussan         ###   ########.fr        #
+#    Updated: 2022/11/24 18:13:57 by numussan         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,6 +15,7 @@ NAME		= philo
 .SILENT:
 
 SRCS		= srcs/philosophers \
+		srcs/parsing \
 		srcs/utils \
 		srcs/utils2 \
 		srcs/start \
