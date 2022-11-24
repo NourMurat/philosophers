@@ -6,7 +6,7 @@
 #    By: numussan <numussan@student.42abudhabi.ae>  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/09 14:51:24 by numussan          #+#    #+#              #
-#    Updated: 2022/11/24 18:13:57 by numussan         ###   ########.fr        #
+#    Updated: 2022/11/24 19:14:06 by numussan         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -50,7 +50,7 @@ all: $(NAME)
 	printf "'-------------'\n";
 
 $(NAME): $(OBJS)
-	$(CCF) $(OBJS) -o $(NAME)
+	$(CCF) $(OBJS) -o $(NAME) -pthread
 
 clean:
 	$(RM) $(OBJDIR)

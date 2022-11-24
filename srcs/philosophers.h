@@ -6,7 +6,7 @@
 /*   By: numussan <numussan@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/17 13:36:07 by numussan          #+#    #+#             */
-/*   Updated: 2022/11/24 19:10:56 by numussan         ###   ########.fr       */
+/*   Updated: 2022/11/24 20:47:24 by numussan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,9 +22,9 @@
 typedef struct s_philo
 {
 	int				id_philo;
-	int				time_to_die;
-	int				time_to_eat;
-	int				time_to_sleep;
+	long long		time_to_die;
+	long long		time_to_eat;
+	long long		time_to_sleep;
 	int				count_eat;
 	int				id_left;
 	int				id_right;
@@ -36,15 +36,16 @@ typedef struct s_philo
 typedef struct s_global
 {
 	int				number_of_philos;
-	int				time_to_die;
-	int				time_to_eat;
-	int				time_to_sleep;
+	long long		time_to_die;
+	long long		time_to_eat;
+	long long		time_to_sleep;
 	int				count_of_lunch;
 	int				death;
 	long long		time_start;
 	pthread_t		*thread;
 	pthread_mutex_t	*fork;
 	pthread_mutex_t	print_action;
+	pthread_mutex_t	c_eat;
 	t_philo			*philo;
 }				t_global;
 
@@ -54,7 +55,7 @@ int			ft_philo_init(t_global *global);
 int			ft_start(t_global *global);
 void		*ft_philo_start(void *tmp);
 
-int			ft_atoi(char *s);
+long long	ft_atoi(char *s);
 int			ft_free_global(t_global *global);
 int			ft_global_malloc(t_global *global);
 long long	ft_current_time(void);

@@ -6,7 +6,7 @@
 /*   By: numussan <numussan@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/20 19:55:40 by numussan          #+#    #+#             */
-/*   Updated: 2022/11/22 22:43:33 by numussan         ###   ########.fr       */
+/*   Updated: 2022/11/24 20:57:27 by numussan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,9 +25,16 @@ void	*ft_check_death(void *tmp)
 		i = -1;
 		while (++i < global->number_of_philos)
 		{
+			pthread_mutex_lock(&global->c_eat);
 			if (global->count_of_lunch)
+			{
 				if (philo->count_eat == global->count_of_lunch)
+				{
+					pthread_mutex_unlock(&global->c_eat);
 					return (NULL);
+				}
+			}
+			pthread_mutex_unlock(&global->c_eat);
 			if (ft_current_time() - philo[i].last_eat > philo[i].time_to_die)
 			{
 				global->death = 1;
@@ -70,7 +77,9 @@ int	ft_eating(t_global *global, t_philo *philo)
 	pthread_mutex_lock(&global->fork[philo->id_right]);
 	ft_print(global, philo, "has taken a fork");
 	ft_print(global, philo, "is eating");
+	pthread_mutex_lock(&global->c_eat);
 	philo->count_eat++;
+	pthread_mutex_unlock(&global->c_eat);
 	philo->last_eat = ft_current_time();
 	ft_usleep(philo->time_to_eat);
 	pthread_mutex_unlock(&global->fork[philo->id_left]);

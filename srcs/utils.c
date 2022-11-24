@@ -6,7 +6,7 @@
 /*   By: numussan <numussan@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/20 19:37:29 by numussan          #+#    #+#             */
-/*   Updated: 2022/11/23 22:32:13 by numussan         ###   ########.fr       */
+/*   Updated: 2022/11/24 20:11:51 by numussan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ long long	ft_current_time(void)
 	return (current_time.tv_sec * 1000 + current_time.tv_usec / 1000);
 }
 
-int	ft_atoi(char *s)
+long long	ft_atoi(char *s)
 {
 	int					i;
 	int					sign;

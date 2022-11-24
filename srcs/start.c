@@ -6,7 +6,7 @@
 /*   By: numussan <numussan@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/20 19:36:07 by numussan          #+#    #+#             */
-/*   Updated: 2022/11/24 18:13:11 by numussan         ###   ########.fr       */
+/*   Updated: 2022/11/24 20:50:09 by numussan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,6 @@ int	ft_start(t_global *global)
 		pthread_create(&global->thread[i], NULL, \
 			&ft_philo_start, &global->philo[i]);
 	pthread_create(&check, NULL, &ft_check_death, global);
-	pthread_mutex_unlock(&global->print_action);
 	pthread_join(check, NULL);
 	i = -1;
 	while (++i < global->number_of_philos)
@@ -112,5 +111,6 @@ t_global	*ft_global_init(int i, char **s)
 	global->fork = NULL;
 	global->philo = NULL;
 	pthread_mutex_init(&global->print_action, NULL);
+	pthread_mutex_init(&global->c_eat, NULL);
 	return (global);
 }
