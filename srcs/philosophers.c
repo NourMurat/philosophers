@@ -23,6 +23,9 @@ void	ft_mutex_destroy(t_global *global)
 			printf("ERROR destroy mutex %d!\n", i);
 	}
 	pthread_mutex_destroy(&global->print_action);
+	pthread_mutex_destroy(&global->c_eat);
+	pthread_mutex_destroy(&global->mut_death);
+	pthread_mutex_destroy(&global->mut_last);
 }
 
 int	ft_free_global(t_global *global)

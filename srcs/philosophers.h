@@ -46,6 +46,8 @@ typedef struct s_global
 	pthread_mutex_t	*fork;
 	pthread_mutex_t	print_action;
 	pthread_mutex_t	c_eat;
+	pthread_mutex_t	mut_death;
+	pthread_mutex_t mut_last;
 	t_philo			*philo;
 }				t_global;
 
