@@ -28,6 +28,8 @@ void	*ft_philo_start(void *tmp)
 	{
 		if (global->count_of_lunch)
 		{
+			// if (global->death)
+			// 	return (NULL);
 			if (philo->count_eat == global->count_of_lunch)
 				return (NULL);
 		}
@@ -53,8 +55,7 @@ int	ft_start(t_global *global)
 	}
 	i = -1;
 	while (++i < global->number_of_philos)
-		pthread_create(&global->thread[i], NULL, \
-			&ft_philo_start, &global->philo[i]);
+		pthread_create(&global->thread[i], NULL, &ft_philo_start, &global->philo[i]);
 	pthread_create(&check, NULL, &ft_check_death, global);
 	pthread_join(check, NULL);
 	i = -1;
@@ -109,8 +110,8 @@ t_global	*ft_global_init(int i, char **s)
 	global->time_start = 0;
 	global->thread = NULL;
 	global->fork = NULL;
-	global->philo = NULL;
 	pthread_mutex_init(&global->print_action, NULL);
-	pthread_mutex_init(&global->c_eat, NULL);
+	// pthread_mutex_init(&global->c_eat, NULL);
+	global->philo = NULL;
 	return (global);
 }

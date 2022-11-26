@@ -25,7 +25,7 @@ OBJDIR 		= objects
 
 OBJS		= $(addprefix $(OBJDIR)/, $(addsuffix .o, $(SRCS)))
 
-CCF			= gcc -Wall -Wextra -Werror #-fsanitize=thread
+CCF			= gcc -g -Wall -Wextra -Werror #-fsanitize=thread
 
 RM			= rm -rf
 
