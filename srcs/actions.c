@@ -25,12 +25,12 @@ void	*ft_check_death(void *tmp)
 		i = -1;
 		while (++i < global->number_of_philos)
 		{
-			pthread_mutex_lock(&global->c_eat);
+			// pthread_mutex_lock(&global->c_eat);
 			if (global->count_of_lunch)
 			{
 				if (philo->count_eat == global->count_of_lunch)
 				{
-					pthread_mutex_unlock(&global->c_eat);
+					// pthread_mutex_unlock(&global->c_eat);
 					return (NULL);
 				}
 			}
@@ -43,6 +43,7 @@ void	*ft_check_death(void *tmp)
 				global->death = 1;
 				pthread_mutex_unlock(&global->mut_death);
 				pthread_mutex_lock(&global->print_action);
+				global->death = 1;
 				printf("%lld %d is died\n", \
 					ft_current_time() - philo->time_start, philo->id_philo);
 				pthread_mutex_unlock(&global->print_action);
@@ -112,7 +113,7 @@ int	ft_eating(t_global *global, t_philo *philo)
 	pthread_mutex_unlock(&global->fork[philo->id_left]);
 	pthread_mutex_unlock(&global->fork[philo->id_right]);
 	ft_print(global, philo, "is eating");
-	pthread_mutex_lock(&global->c_eat);
+	// pthread_mutex_lock(&global->c_eat);
 	philo->count_eat++;
 	pthread_mutex_unlock(&global->c_eat);
 	pthread_mutex_lock(&global->mut_last);

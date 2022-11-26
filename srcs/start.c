@@ -51,8 +51,7 @@ int	ft_start(t_global *global)
 	}
 	i = -1;
 	while (++i < global->number_of_philos)
-		pthread_create(&global->thread[i], NULL, \
-			&ft_philo_start, &global->philo[i]);
+		pthread_create(&global->thread[i], NULL, &ft_philo_start, &global->philo[i]);
 	pthread_create(&check, NULL, &ft_check_death, global);
 	// pthread_mutex_unlock(&global->print_action);
 	pthread_join(check, NULL);
@@ -108,7 +107,6 @@ t_global	*ft_global_init(int i, char **s)
 	global->time_start = 0;
 	global->thread = NULL;
 	global->fork = NULL;
-	global->philo = NULL;
 	pthread_mutex_init(&global->print_action, NULL);
 	pthread_mutex_init(&global->c_eat, NULL);
 	pthread_mutex_init(&global->mut_death, NULL);

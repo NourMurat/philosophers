@@ -22,9 +22,9 @@
 typedef struct s_philo
 {
 	int				id_philo;
-	long long		time_to_die;
-	long long		time_to_eat;
-	long long		time_to_sleep;
+	int				time_to_die;
+	int				time_to_eat;
+	int				time_to_sleep;
 	int				count_eat;
 	int				id_left;
 	int				id_right;
@@ -36,9 +36,9 @@ typedef struct s_philo
 typedef struct s_global
 {
 	int				number_of_philos;
-	long long		time_to_die;
-	long long		time_to_eat;
-	long long		time_to_sleep;
+	int				time_to_die;
+	int				time_to_eat;
+	int				time_to_sleep;
 	int				count_of_lunch;
 	int				death;
 	long long		time_start;
