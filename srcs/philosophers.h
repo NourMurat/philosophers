@@ -6,7 +6,7 @@
 /*   By: numussan <numussan@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/17 13:36:07 by numussan          #+#    #+#             */
-/*   Updated: 2022/11/24 20:47:24 by numussan         ###   ########.fr       */
+/*   Updated: 2022/11/27 17:28:42 by numussan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ typedef struct s_global
 	pthread_mutex_t	print_action;
 	pthread_mutex_t	c_eat;
 	pthread_mutex_t	mut_death;
-	pthread_mutex_t mut_last;
+	pthread_mutex_t	mut_last;
 	t_philo			*philo;
 }				t_global;
 
@@ -57,7 +57,7 @@ int			ft_philo_init(t_global *global);
 int			ft_start(t_global *global);
 void		*ft_philo_start(void *tmp);
 
-long long	ft_atoi(char *s);
+int			ft_atoi(char *s);
 int			ft_free_global(t_global *global);
 int			ft_global_malloc(t_global *global);
 long long	ft_current_time(void);
@@ -78,6 +78,7 @@ int			ft_eating(t_global *global, t_philo *philo);
 void		ft_sleeping(t_global *global, t_philo *philo);
 void		ft_thinking(t_global *global, t_philo *philo);
 void		*ft_check_death(void *tmp);
+int			ft_check_time_die(t_global *global, t_philo *philo, int i);
 void		ft_mutex_destroy(t_global *global);
 
 #endif

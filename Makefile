@@ -6,7 +6,7 @@
 #    By: numussan <numussan@student.42abudhabi.ae>  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/09 14:51:24 by numussan          #+#    #+#              #
-#    Updated: 2022/11/24 19:14:06 by numussan         ###   ########.fr        #
+#    Updated: 2022/11/27 16:03:35 by numussan         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,8 +30,8 @@ CCF			= gcc -g -Wall -Wextra -Werror -fsanitize=thread
 RM			= rm -rf
 
 $(OBJDIR)/%.o: %.c srcs/philosophers.h
-	mkdir -p $(OBJDIR)
-	mkdir -p $(OBJDIR)/srcs
+	@mkdir -p $(OBJDIR)
+	@mkdir -p $(OBJDIR)/srcs
 	$(CCF) -c $< -o $@
 
 all: $(NAME)
@@ -50,13 +50,13 @@ all: $(NAME)
 	printf "'-------------'\n";
 
 $(NAME): $(OBJS)
-	$(CCF) $(OBJS) -o $(NAME) -pthread
+	@$(CCF) $(OBJS) -o $(NAME) -pthread
 
 clean:
-	$(RM) $(OBJDIR)
+	@$(RM) $(OBJDIR)
 
 fclean: clean
-	$(RM) $(NAME)
+	@$(RM) $(NAME)
 
 re: fclean all
 

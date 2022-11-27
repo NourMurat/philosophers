@@ -6,7 +6,7 @@
 /*   By: numussan <numussan@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/20 19:36:07 by numussan          #+#    #+#             */
-/*   Updated: 2022/11/24 20:50:09 by numussan         ###   ########.fr       */
+/*   Updated: 2022/11/27 17:10:54 by numussan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,10 +22,14 @@ void	*ft_philo_start(void *tmp)
 	if (philo->id_philo % 2 == 0)
 	{
 		ft_print(global, philo, "is thinking");
-		usleep(50);
+		usleep(philo->time_to_eat);
 	}
-	while (!global->death)
+	while (1)
 	{
+		pthread_mutex_lock(&global->mut_death);
+		if (global->death)
+			return (pthread_mutex_unlock(&global->mut_death), NULL);
+		pthread_mutex_unlock(&global->mut_death);
 		if (global->count_of_lunch)
 			if (philo->count_eat == global->count_of_lunch)
 				return (NULL);
@@ -51,9 +55,9 @@ int	ft_start(t_global *global)
 	}
 	i = -1;
 	while (++i < global->number_of_philos)
-		pthread_create(&global->thread[i], NULL, &ft_philo_start, &global->philo[i]);
+		pthread_create(&global->thread[i], \
+			NULL, &ft_philo_start, &global->philo[i]);
 	pthread_create(&check, NULL, &ft_check_death, global);
-	// pthread_mutex_unlock(&global->print_action);
 	pthread_join(check, NULL);
 	i = -1;
 	while (++i < global->number_of_philos)
