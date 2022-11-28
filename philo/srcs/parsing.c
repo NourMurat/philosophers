@@ -6,7 +6,7 @@
 /*   By: numussan <numussan@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/24 18:13:14 by numussan          #+#    #+#             */
-/*   Updated: 2022/11/27 16:08:59 by numussan         ###   ########.fr       */
+/*   Updated: 2022/11/28 23:26:07 by numussan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,14 +71,14 @@ int	ft_parsing(char **s)
 		i++;
 	if (i != 4 && i != 5)
 	{
-		printf("<<<<< ERROR! Input 4 or 5 arguments! >>>>>");
+		printf("<<<<< ERROR! Input 4 or 5 arguments! >>>>>\n");
 		ft_free_after_split(s);
 		return (1);
 	}
 	if (ft_atoi(s[0]) <= 0 || ft_atoi(s[1]) <= 0 || ft_atoi(s[2]) <= 0 \
 		|| ft_atoi(s[3]) <= 0 || (i == 5 && ft_atoi(s[4]) <= 0))
 	{
-		printf("<<<<< ERROR! Wrong arguments! >>>>>");
+		printf("<<<<< ERROR! Wrong arguments! >>>>>\n");
 		ft_free_after_split(s);
 		return (1);
 	}

@@ -6,7 +6,7 @@
 /*   By: numussan <numussan@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/20 19:36:07 by numussan          #+#    #+#             */
-/*   Updated: 2022/11/27 17:10:54 by numussan         ###   ########.fr       */
+/*   Updated: 2022/11/28 23:37:08 by numussan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,9 +86,9 @@ int	ft_philo_init(t_global *global)
 		global->philo[i].arg = global;
 		i++;
 	}
-	i = 0;
+	i = -1;
 	while (i < global->number_of_philos)
-		if (pthread_mutex_init(&global->fork[i++], NULL))
+		if (pthread_mutex_init(&global->fork[++i], NULL))
 			return (1);
 	return (0);
 }

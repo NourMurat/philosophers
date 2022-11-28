@@ -6,7 +6,7 @@
 /*   By: numussan <numussan@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/20 19:55:40 by numussan          #+#    #+#             */
-/*   Updated: 2022/11/27 16:53:31 by numussan         ###   ########.fr       */
+/*   Updated: 2022/11/28 21:35:41 by numussan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,7 +90,7 @@ int	ft_eating(t_global *global, t_philo *philo)
 	pthread_mutex_lock(&global->fork[philo->id_left]);
 	ft_print(global, philo, "has taken a fork");
 	if (global->number_of_philos == 1)
-		return (pthread_mutex_unlock(&global->fork[global->philo->id_left]), 1);
+		return (pthread_mutex_unlock(&global->fork[philo->id_left]), 1);
 	pthread_mutex_lock(&global->fork[philo->id_right]);
 	ft_print(global, philo, "has taken a fork");
 	ft_print(global, philo, "is eating");
